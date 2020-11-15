@@ -74,9 +74,12 @@ def preprocess(observations):
 
     return observations
 
-"""# Identify labels"""
+"""# Count and print Named Entities"""
 
-def addLabel(observations, dictionary_label_word_count):
+def printNamedEntities(observations, dictionary_label_word_count):
+  labels = 0
+  entities = 0
+
   for element in range(len(observations)): 
       tweet_element = nl(observations[element])
 
@@ -89,13 +92,7 @@ def addLabel(observations, dictionary_label_word_count):
             dictionary_label_word_count[entity.label_][entity.text] = 1
           else:
             dictionary_label_word_count[entity.label_][entity.text] += 1
-
-"""# Print Named Entities"""
-
-def printEntities(dictionary_label_word_count):
-  labels = 0
-  entities = 0
-
+  
   for label in dictionary_label_word_count:
     labels += 1
     for entity in dictionary_label_word_count[label]:
@@ -113,8 +110,7 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=30)
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
 
 """# StreamListener for 1 minute"""
 
@@ -125,8 +121,7 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=60)
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
 
 """# StreamListener for 2 minutes"""
 
@@ -137,8 +132,7 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=120
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
 
 """# StreamListener for 3 minutes"""
 
@@ -149,8 +143,7 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=180
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
 
 """# StreamListener for 4 minutes"""
 
@@ -161,8 +154,7 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=240
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
 
 """# StreamListener for 5 minutes"""
 
@@ -173,5 +165,4 @@ myStream = tweepy.Stream(auth=api.auth, listener=MyStreamListener(time_limit=300
 myStream.filter(track=['Joe Biden'])
 
 preprocess(tweet)
-addLabel(tweet, dictionary_label_word_count)
-printEntities(dictionary_label_word_count)
+printNamedEntities(tweet, dictionary_label_word_count)
